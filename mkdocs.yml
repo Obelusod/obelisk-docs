@@ -52,6 +52,8 @@ nav:
   - 指南:
       - 【WSL】安装与配置指南: 指南/wsl-guide.md
       - 【OpenGL】安装与配置指南: 指南/opengl-guide.md
+      - 其他:
+        - 【JetBrains】教育许可证申请指南: 指南/jetbrains-application-guide.md
 
 extra:
   social:
