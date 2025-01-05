@@ -51,6 +51,7 @@ nav:
   - 主页: index.md
   - 指南:
       - 【WSL】安装与配置指南: 指南/wsl-guide.md
+      - 【OpenGL】安装与配置指南: 指南/opengl-guide.md
 
 extra:
   social:
