@@ -5,7 +5,7 @@ site_author: Obelus
 theme:
   name: material
   language: zh
-  favicon: assets/images/logo.png
+  favicon: assets/logo.png
 
   font:
     text: Roboto
