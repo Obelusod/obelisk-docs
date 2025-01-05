@@ -1,0 +1,112 @@
+site_name: Obelisk Docs
+site_url: https://obelusod.link/docs
+site_author: Obelus
+
+theme:
+  name: material
+  language: zh
+  favicon: assets/images/logo.png
+
+  font:
+    text: Roboto
+    code: JetBrains Mono
+
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      toggle:
+        icon: material/weather-sunny
+        name: 切换至深色模式
+
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: blue grey
+      toggle:
+        icon: material/weather-night
+        name: 切换至浅色模式
+
+  icon:
+    logo: material/star-shooting-outline
+    repo: fontawesome/brands/github
+    annotation: material/comma-circle
+
+  features:
+    - navigation.instant
+    - navigation.instant.progress
+    - navigation.tracking
+    - navigation.top
+    - navigation.tabs
+    - navigation.sections
+    - navigation.indexes
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - header.autohide
+    - content.code.copy
+    - content.code.annotate
+    - content.tooltips
+
+nav:
+  - 主页: index.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Obelusod
+
+extra_css:
+  - stylesheets/extra.css
+
+markdown_extensions:
+  - toc:
+      toc_depth: 4
+      permalink: "#"
+      permalink_title: "固定链接"
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+          percent_encode: false
+  - pymdownx.tabbed:
+      alternate_style: true
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
+          percent_encode: false
+  - pymdownx.highlight:
+      use_pygments: true
+      line_spans: __span
+      auto_title: true
+      anchor_linenums: true
+      pygments_lang_class: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.betterem
+  - pymdownx.blocks.caption
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - md_in_html
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - tables
+  - footnotes
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+  - glightbox
+
+# yaml-language-server: $schema=https://squidfunk.github.io/mkdocs-material/schema.json

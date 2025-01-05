@@ -1,0 +1,15 @@
+.md-grid {
+    max-width: 1440px;
+}
+
+nav.md-nav {
+    width: 12rem;
+}
+
+div.md-sidebar.md-sidebar--primary{
+    width: 12.5rem;
+}
+
+div.md-sidebar.md-sidebar--secondary {
+    width: 14rem;
+}

@@ -1,0 +1,14 @@
+# IntelliJ project files
+.idea
+
+# Dependencies
+node_modules
+__pycache__
+
+# Build files
+build
+site
+
+# Caches and logs
+*.log
+.cache
