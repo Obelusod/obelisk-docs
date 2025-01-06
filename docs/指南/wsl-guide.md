@@ -165,7 +165,7 @@ wsl --install -d [Distro] [Option] # (1)!
 !!! abstract "Linux Shell"
 
     在 WSL 中，大部分的操作都需要通过 **Linux Shell（Windows Terminal）**输入命令执行，而不像 Windows 系统一样使用图形界面，因此认识并熟练使用
-    Shell 尤为重要。可以在 Windows 任意目录下按住 Shift + 右键单击，在菜单中选择 **"在此处打开 Linux shell"** 打开终端。
+    Shell 尤为重要。可以在 Windows 任意目录下按住 ++shift++ + 右键单击，在菜单中选择 **"在此处打开 Linux shell"** 打开终端。
 
 ![](../assets/images/wsl-guide/linux-shell.png){: .shadow }
 /// caption
@@ -185,7 +185,7 @@ Bash 命令提示符中，如 `obelus@Hyper-V:~$`、`root@mypc:/home#`
 !!! tip "Shell 使用提示"
 
     - 在终端中要求输入密码时，为确保安全，输入的密码不会被显示。
-    - Bash 提供了命令自动补全功能，按下 `TAB` 键可以根据当前已输入到字符自动补全完整的命令/参数/路径。
+    - Bash 提供了命令自动补全功能，按下 ++tab++ 键可以根据当前已输入到字符自动补全完整的命令/参数/路径。
 
     建议参考：[Linux 常用命令学习 | 菜鸟教程](https://www.runoob.com/w3cnote/linux-common-command-2.html)
 
@@ -429,7 +429,7 @@ sudo apt upgrade
 
     !!! tip "自动补全"
 
-        建议使用 `TAB` 键自动补全，或执行 `apt search cuda-toolkit` 命令，搜索当前可用的 CUDA Toolkit 版本
+        建议使用 ++tab++ 键自动补全，或执行 `apt search cuda-toolkit` 命令，搜索当前可用的 CUDA Toolkit 版本
     
     ``` bash
     sudo apt install ${cuda-toolkit}

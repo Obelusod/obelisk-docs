@@ -43,7 +43,7 @@ Microsoft Visual C++（MSVC）的二进制文件
 
 ??? example "freeglut 动态库的文件目录结构（Windows 平台）"
 
-    - **bin**：存放可执行文件
+    - **bin**：存放二进制文件
         - **x64**：64 位版本的动态链接库文件
             - `freeglut.dll`：64 位的动态链接库
         - `freeglut.dll`：32 位的动态链接库
@@ -91,7 +91,7 @@ Microsoft Visual C++（MSVC）的二进制文件
 
 ??? example "GLEW 动态库的文件目录结构（Windows 平台）"
 
-    - **bin**：存放可执行文件
+    - **bin**：存放二进制文件
         - **Release**：发行版本
             - **Win32**：32 位版本的可执行文件
                 - `glew32.dll`：32 位的动态链接库
