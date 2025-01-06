@@ -1,0 +1,1270 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Obelus">
+      
+      
+        <link rel="canonical" href="https://obelusod.link/docs/%E6%8C%87%E5%8D%97/opengl-guide/">
+      
+      
+        <link rel="prev" href="../wsl-guide/">
+      
+      
+        <link rel="next" href="../jetbrains-application-guide/">
+      
+      
+      <link rel="icon" href="../../assets/logo.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>【OpenGL】安装与配置指南 - Obelisk Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+  
+  
+  
+  
+  <style>:root{--md-annotation-icon:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m3 11-2 4h-3l2-4H9V7h6z"/></svg>');}</style>
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#1-安装-freeglut-与-glew" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Obelisk Docs" class="md-header__button md-logo" aria-label="Obelisk Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23 7.5-6.47-.54L14 1l-2.53 5.96L5 7.5l4.9 4.27-1.46 6.33L14 14.74l5.56 3.36-1.47-6.33zm-6.86 4.73.4 1.71-1.51-.91-1.03-.62-1.03.62-1.51.91.39-1.71.28-1.18-.91-.79L9.88 9.1l1.76-.15 1.2-.1.47-1.11.69-1.62.69 1.62.47 1.11 1.2.1 1.75.15-1.33 1.16-.92.79zM1.16 12c-.299-.5-.171-1.11.29-1.41l2.73-1.8 1.57 1.36-3.2 2.11c-.17.11-.36.17-.55.17-.32 0-.64-.16-.84-.43m.29 8.16 5.86-3.85L7 17.76l-.34 1.37-4.11 2.71c-.17.11-.36.16-.55.16-.32 0-.64-.16-.84-.45a1.013 1.013 0 0 1 .29-1.39m5.87-8.66.92.81-.27 1.19-5.42 3.55c-.17.11-.36.16-.55.16-.32 0-.64-.15-.84-.45a1 1 0 0 1 .29-1.38z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Obelisk Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              【OpenGL】安装与配置指南
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至深色模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至深色模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至浅色模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至浅色模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  主页
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../wsl-guide/" class="md-tabs__link">
+          
+  
+    
+  
+  指南
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Obelisk Docs" class="md-nav__button md-logo" aria-label="Obelisk Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m23 7.5-6.47-.54L14 1l-2.53 5.96L5 7.5l4.9 4.27-1.46 6.33L14 14.74l5.56 3.36-1.47-6.33zm-6.86 4.73.4 1.71-1.51-.91-1.03-.62-1.03.62-1.51.91.39-1.71.28-1.18-.91-.79L9.88 9.1l1.76-.15 1.2-.1.47-1.11.69-1.62.69 1.62.47 1.11 1.2.1 1.75.15-1.33 1.16-.92.79zM1.16 12c-.299-.5-.171-1.11.29-1.41l2.73-1.8 1.57 1.36-3.2 2.11c-.17.11-.36.17-.55.17-.32 0-.64-.16-.84-.43m.29 8.16 5.86-3.85L7 17.76l-.34 1.37-4.11 2.71c-.17.11-.36.16-.55.16-.32 0-.64-.16-.84-.45a1.013 1.013 0 0 1 .29-1.39m5.87-8.66.92.81-.27 1.19-5.42 3.55c-.17.11-.36.16-.55.16-.32 0-.64-.15-.84-.45a1 1 0 0 1 .29-1.38z"/></svg>
+
+    </a>
+    Obelisk Docs
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    主页
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    指南
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            指南
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../wsl-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    【WSL】安装与配置指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    【OpenGL】安装与配置指南
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    【OpenGL】安装与配置指南
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-安装-freeglut-与-glew" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 安装 freeglut 与 GLEW
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 安装 freeglut 与 GLEW">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#下载-freeglut" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 freeglut
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#下载-glew" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 GLEW
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visual-studio-环境配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Visual Studio 环境配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Visual Studio 环境配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#配置项目属性hlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置项目属性（.h、.lib）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#设置系统环境变量dll" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置系统环境变量（.dll）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-opengl-绘图示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. OpenGL 绘图示例
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    其他
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            其他
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jetbrains-application-guide/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    【JetBrains】教育许可证申请指南
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-安装-freeglut-与-glew" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 安装 freeglut 与 GLEW
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. 安装 freeglut 与 GLEW">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#下载-freeglut" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 freeglut
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#下载-glew" class="md-nav__link">
+    <span class="md-ellipsis">
+      下载 GLEW
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-visual-studio-环境配置" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Visual Studio 环境配置
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Visual Studio 环境配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#配置项目属性hlib" class="md-nav__link">
+    <span class="md-ellipsis">
+      配置项目属性（.h、.lib）
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#设置系统环境变量dll" class="md-nav__link">
+    <span class="md-ellipsis">
+      设置系统环境变量（.dll）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-opengl-绘图示例" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. OpenGL 绘图示例
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>【OpenGL】安装与配置指南</h1>
+
+<div class="admonition abstract">
+<p class="admonition-title">OpenGL（Open Graphics Library）<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup></p>
+<p><strong>OpenGL</strong> 是一个跨平台的二维和三维图形渲染标准接口，提供了硬件加速的图形处理功能。OpenGL 由 Khronos Group
+维护，以其高效和灵活性著称，支持从简单的图形绘制到复杂的 3D 图形渲染的广泛应用，广泛用于游戏开发、CAD、虚拟现实和科学可视化等领域。它通过一组
+API 函数调用，让开发者能够直接与 GPU 交互，实现实时的图形渲染效果。</p>
+</div>
+<h2 id="1-安装-freeglut-与-glew">1. 安装 freeglut 与 GLEW<a class="headerlink" href="#1-安装-freeglut-与-glew" title="固定链接">#</a></h2>
+<h3 id="下载-freeglut">下载 freeglut<a class="headerlink" href="#下载-freeglut" title="固定链接">#</a></h3>
+<div class="admonition abstract">
+<p class="admonition-title">freeglut（Free OpenGL Utility Toolkit）</p>
+<p><strong>freeglut</strong> 是一个用于创建和管理 OpenGL 窗口的工具库，它是原始 GLUT（OpenGL Utility Toolkit）的一个免费的开源替代品，提供了更多功能和跨平台支持。通过
+freeglut 可以更轻松地创建窗口、处理输入事件、管理窗口的位置和大小等操作。</p>
+</div>
+<p>访问 <a href="https://freeglut.sourceforge.net">freeglut 官网</a>，在 <strong>"Pre-Compiled Packages"</strong> 栏下，点击
+<strong><code>Martin Payne's Windows binaries (MSVC and MinGW)</code></strong> 访问 Martin Payne 的网站（freeglut Windows Development Libraries）</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/freeglut-homepage.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/freeglut-homepage.png" /></a></p>
+<hr />
+<p>在网站的 <strong>"freeglut 3.0.0 MSVC Package"</strong> 栏下，点击 <strong><code>Download freeglut 3.0.0 for MSVC</code></strong> 下载适用于
+Microsoft Visual C++（MSVC）的二进制文件</p>
+<div class="admonition tip">
+<p class="admonition-title">如果需要使用最新版</p>
+<p>在此网站下载的 freeglut 版本可能较旧，如需使用新版本可在 <a href="https://github.com/freeglut/freeglut">Github</a>下载源文件自行编译</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/freeglut-devel-page.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/freeglut-devel-page.png" /></a></p>
+<hr />
+<p>将下载的二进制文件压缩包解压至任意路径，例如：<code>C:\Library</code></p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/freeglut-folder.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/freeglut-folder.png" /></a></p>
+<hr />
+<details class="example">
+<summary>freeglut 动态库的文件目录结构（Windows 平台）</summary>
+<ul>
+<li><strong>bin</strong>：存放二进制文件<ul>
+<li><strong>x64</strong>：64 位版本的动态链接库文件<ul>
+<li><code>freeglut.dll</code>：64 位的动态链接库</li>
+</ul>
+</li>
+<li><code>freeglut.dll</code>：32 位的动态链接库</li>
+</ul>
+</li>
+<li><strong>include</strong>：存放头文件<ul>
+<li><strong>GL</strong>：OpenGL 相关的头文件<ul>
+<li><code>freeglut.h</code>：freeglut 的核心头文件</li>
+<li><code>freeglut_ext.h</code>：扩展功能的头文件</li>
+<li><code>freeglut_std.h</code>：标准接口的头文件</li>
+<li><code>glut.h</code>：OpenGL 辅助库的头文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>lib</strong>：存放库文件<ul>
+<li><strong>x64</strong>：64 位版本的导入库文件（动态链接）<ul>
+<li><code>freeglut.lib</code>：64 位的导入库文件</li>
+</ul>
+</li>
+<li><code>freeglut.lib</code>：32 位的导入库文件</li>
+</ul>
+</li>
+<li><code>Copying.txt</code>：版权和许可证信息</li>
+<li><code>Readme.txt</code>：关于 freeglut 的简要说明和使用方法</li>
+</ul>
+</details>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/freeglut-files.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/freeglut-files.png" /></a></p>
+<hr />
+<h3 id="下载-glew">下载 GLEW<a class="headerlink" href="#下载-glew" title="固定链接">#</a></h3>
+<div class="admonition abstract">
+<p class="admonition-title">GLEW（OpenGL Extension Wrangler Library）</p>
+<p><strong>GLEW</strong> 是一个开源的、跨平台的 C/C++ 库，用于管理 OpenGL 的扩展。在实际的 OpenGL 开发中，有许多功能是由扩展提供的，而 GLEW
+可以帮助我们轻松地管理这些扩展。它提供了一组简洁的接口，方便我们查询、加载和管理 OpenGL 的扩展，使得在不同平台上编写 OpenGL 代码变得更加简单和统一。</p>
+</div>
+<p class="annotate">访问 <a href="https://www.opengl.org">GLEW 官网</a>，在 <strong>"Downloads"</strong> 标题下，点击 <strong><code>Windows 32-bit and 64-bit</code></strong> 下载适用于 Windows
+平台的二进制文件（Binaries）(1)</p>
+<ol>
+<li>二进制文件包含了从源文件（Source）编译的适用于特定平台的可执行文件、头文件、静态/动态库文件等</li>
+</ol>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/glew-homepage.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/glew-homepage.png" /></a></p>
+<hr />
+<p class="annotate">将下载的二进制文件压缩包解压至任意路径 (1)，例如：<code>C:\Library</code></p>
+<ol>
+<li>库路径不建议包含任何特殊字符（如中文）和空格</li>
+</ol>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/glew-folder.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/glew-folder.png" /></a></p>
+<hr />
+<details class="example">
+<summary>GLEW 动态库的文件目录结构（Windows 平台）</summary>
+<ul>
+<li><strong>bin</strong>：存放二进制文件<ul>
+<li><strong>Release</strong>：发行版本<ul>
+<li><strong>Win32</strong>：32 位版本的可执行文件<ul>
+<li><code>glew32.dll</code>：32 位的动态链接库</li>
+<li><code>glewinfo.exe</code>：用于显示 OpenGL 扩展信息的可执行文件</li>
+<li><code>visualinfo.exe</code>：用于显示 OpenGL 可视化信息的可执行文件</li>
+</ul>
+</li>
+<li><strong>x64</strong>：64 位版本的可执行文件<ul>
+<li><code>glew32.dll</code>：64 位的动态链接库</li>
+<li><code>glewinfo.exe</code>：用于显示 OpenGL 扩展信息的可执行文件</li>
+<li><code>visualinfo.exe</code>：用于显示 OpenGL 可视化信息的可执行文件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>doc</strong>：存放文档文件<ul>
+<li><code>*.html</code>：各种 HTML 文件，包括文档、安装说明等</li>
+<li><code>*.txt</code>：各种文本文件，包括许可证、版权等</li>
+<li><code>*.png</code>：各种图片文件</li>
+</ul>
+</li>
+<li><strong>include</strong>：存放头文件<ul>
+<li><strong>GL</strong>：OpenGL 相关的头文件<ul>
+<li><code>eglew.h</code>：EGL 扩展的头文件</li>
+<li><code>glew.h</code>：GLEW 核心头文件</li>
+<li><code>glxew.h</code>：GLX 扩展的头文件</li>
+<li><code>wglew.h</code>：WGL 扩展的头文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>lib</strong>：存放库文件<ul>
+<li><strong>Release</strong>：发行版本<ul>
+<li><strong>Win32</strong>：32 位版本的导入库文件（动态链接）<ul>
+<li><code>glew32.lib</code>： 32 位的导入库</li>
+<li><code>glew32s.lib</code>：32 位的导入库（多线程版本）</li>
+</ul>
+</li>
+<li><strong>x64</strong>：64 位版本的导入库文件（动态链接）<ul>
+<li><code>glew32.lib</code>：64 位的导入库</li>
+<li><code>glew32s.lib</code>：64 位的导入库（多线程版本）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>LICENSE.txt</code>：许可证文件</li>
+</ul>
+</details>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/glew-files.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/glew-files.png" /></a></p>
+<hr />
+<h2 id="2-visual-studio-环境配置">2. Visual Studio 环境配置<a class="headerlink" href="#2-visual-studio-环境配置" title="固定链接">#</a></h2>
+<div class="admonition abstract">
+<p class="admonition-title">环境配置</p>
+<p>为了确保 Visual Studio 编译器能够正确找到和链接 GLEW 和 freeglut 库（动态库）的头文件和库文件，并使编写的程序能够正确运行，
+需要分别设置<strong>（附加）包含目录</strong>、<strong>（附加）库目录</strong>、<strong>（附加）依赖项</strong>和<strong>系统环境变量</strong>。</p>
+<ul>
+<li><strong>包含目录</strong>：用于指定编译器在编译过程中搜索头文件（<code>.h</code>）时的额外搜索路径，以确保编译时就能正确引用这些库的函数和数据结构。</li>
+<li><strong>库目录</strong>：用于指定链接器在链接过程中搜索库文件（<code>.lib</code>）时的额外搜索路径，以确保链接时就能正确找到并链接这些库。</li>
+<li><strong>依赖项</strong>：用于指定链接器在链接过程中需要链接的额外库文件名称，以确保在链接时能够正确地链接所需的库文件。</li>
+<li><strong>系统环境变量</strong>：用于在操作系统层面（所有解决方案/项目均共享）使程序执行时能够正确地找到所需的动态链接库文件（<code>.dll</code>），以确保程序能够正常运行。</li>
+</ul>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">务必检查环境配置</p>
+<p>如果在编译或运行程序时提示报错（如代码标红线、链接错误、无法解析符号或找不到 <code>.dll</code> 文件等），
+请检查环境配置的<strong>所有目录项</strong>和<strong>系统环境变量</strong>是否已正确设置！（也可能之前设置的未能保存）</p>
+</div>
+<h3 id="配置项目属性hlib">配置项目属性（<code>.h</code>、<code>.lib</code>）<a class="headerlink" href="#配置项目属性hlib" title="固定链接">#</a></h3>
+<div class="admonition info">
+<p class="admonition-title">两种环境配置方式</p>
+<p>以下提供两种环境配置方式，二者选其一即可：</p>
+<ul>
+<li><strong>项目级环境配置（单项目）</strong></li>
+<li><strong>项目属性表配置（跨项目）</strong></li>
+</ul>
+<p>注意：两种配置方法都需要<strong>设置系统环境变量</strong>！</p>
+</div>
+<hr />
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="项目级环境配置单项目" name="__tabbed_1" type="radio" /><input id="项目属性表配置跨项目" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="项目级环境配置单项目">项目级环境配置（单项目）</label><label for="项目属性表配置跨项目">项目属性表配置（跨项目）</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="admonition abstract">
+<p class="admonition-title">项目级环境配置</p>
+<p><strong>项目级环境配置</strong>是指仅将环境配置应用于单个项目，不同项目间不共享，如果新建项目需要重新配置。</p>
+</div>
+<p>在 <strong>"解决方案资源管理器"</strong> 栏中，右键单击项目名称，并选择 <strong>"属性"</strong> 打开项目属性页</p>
+<blockquote>
+<p>注意：打开项目的属性页，而非 <code>.cpp</code> 文件的属性页</p>
+</blockquote>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/property-open.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/property-open.png" /></a></p>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">配置与平台</p>
+<p>在修改项目属性之前，注意当前选择的所应用的<strong><code>配置</code></strong>和<strong><code>平台</code></strong>，建议设置为：</p>
+<ul>
+<li><code>配置</code>：<strong>所有配置</strong></li>
+<li><code>平台</code>：<strong>x64</strong></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">区分 64 位和 32 位平台</p>
+<p>此处选择的平台，需要与之后选择的不同位数（Win32/x64）程序的库目录（<code>.lib</code>）相对应！</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/property-page.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/property-page.png" /></a></p>
+<hr />
+<p><strong>设置附加包含目录（<code>.h</code>）</strong></p>
+<p class="annotate">在项目属性页 <strong>"配置属性 &gt; C/C++ &gt; 常规"</strong> (1)中的<strong><code>附加包含目录</code></strong>右侧选择编辑</p>
+<ol>
+<li><code>C/C++</code> 选项仅在有 C/C++ 源文件（<code>.c/.cpp</code>）时才能设置，如果没有此选项可以尝试新建源文件</li>
+</ol>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-include-directories-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-include-directories-1.png" /></a></p>
+<hr />
+<p>点击 <strong>"新行"</strong> 图标，新建目录属性并将值设为 GLEW 和 freeglut 的 <strong><code>include</code></strong> 目录</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-include-directories-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-include-directories-2.png" /></a></p>
+<hr />
+<p>设置完成后，如图所示</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-include-directories-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-include-directories-3.png" /></a></p>
+<hr />
+<p><strong>设置附加库目录（<code>.lib</code>）</strong></p>
+<p>在项目属性页 <strong>"配置属性 &gt; 链接器 &gt; 常规"</strong> 中的<strong><code>附加库目录</code></strong>右侧选择编辑</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-library-directories-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-library-directories-1.png" /></a></p>
+<hr />
+<p>点击 <strong>"新行"</strong> 图标，新建目录属性并将值设为 GLEW 和 freeglut 的 <strong><code>lib</code></strong> 目录（区分 32/64 位程序）</p>
+<div class="admonition info">
+<p class="admonition-title">64 位与 32 位的 lib 目录</p>
+<p>对于 <strong>64 位程序（x64）</strong>，<strong><code>lib</code></strong> 目录设置为：</p>
+<ul>
+<li><code>...\glew\lib\Release\x64</code></li>
+<li><code>...\freeglut\lib\x64</code></li>
+</ul>
+<p>对于 <strong>32 位程序（Win32）</strong>，<strong><code>lib</code></strong> 目录设置为：</p>
+<ul>
+<li><code>...\glew\lib\Release\Win32</code></li>
+<li><code>...\freeglut\lib</code></li>
+</ul>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-library-directories-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-library-directories-2.png" /></a></p>
+<hr />
+<p>设置完成后，如图所示</p>
+<figure>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-library-directories-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-library-directories-3.png" /></a></p>
+<figcaption>
+<p>图中，以 64 位程序为例</p>
+</figcaption>
+</figure>
+<hr />
+<p><strong>设置附加依赖项 [可选]</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">此步骤可跳过</p>
+<p>这一步骤并不是必要的，编译器会自动查找所需依赖项，可以跳过此设置</p>
+</div>
+<p>在项目属性页 <strong>"配置属性 &gt; 链接器 &gt; 输入"</strong> 中的<strong><code>附加依赖项</code></strong>右侧选择编辑</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-dependencies-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-dependencies-1.png" /></a></p>
+<hr />
+<p>在其中写入 GLEW 和 freeglut 的动态库文件名称：<strong><code>glew32.lib</code></strong>、<strong><code>freeglut.lib</code></strong>，如图所示</p>
+<div class="admonition danger">
+<p class="admonition-title">注意拼写</p>
+<p>如果动态库文件名称拼写有误（如将 <code>freeglut</code> 错写为 <code>freelut</code> ），编译器将报错无法找到 <code>.lib</code> 文件</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-dependencies-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-dependencies-2.png" /></a></p>
+</div>
+<div class="tabbed-block">
+<div class="admonition abstract">
+<p class="admonition-title">共享式项目配置</p>
+<p><strong>共享式项目配置</strong>是指将环境配置保存至新建属性表文件（.props），使用公共属性表可以在不同解决方案和项目间实现配置共享或重用，甚至在不同设备之间分享。</p>
+<p>参考文档：<a href="https://learn.microsoft.com/zh-cn/cpp/build/create-reusable-property-configurations?view=msvc-170">共享或重用 Visual Studio 项目设置</a></p>
+</div>
+<p><strong>创建项目属性表</strong></p>
+<p>打开已有的解决方案（项目），在界面左上角选择 <strong>"视图 &gt; 属性管理器"</strong></p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/new-property-sheet-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/new-property-sheet-1.png" /></a></p>
+<hr />
+<p>在属性管理器页面左上角，点击 <strong>"新建属性表"</strong> 图标，打开添加新项界面</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/new-property-sheet-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/new-property-sheet-2.png" /></a></p>
+<hr />
+<p>在添加新项界面选择 <strong>"属性表(.props)"</strong>，并设置属性表名称和保存位置</p>
+<div class="admonition tip">
+<p class="admonition-title">保存备用</p>
+<p>建议将属性表保存至专门用于 OpenGL 项目的文件夹，或是放置桌面备用</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/new-property-sheet-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/new-property-sheet-3.png" /></a></p>
+<hr />
+<p>打开属性管理器中的任意配置文件夹，右键单击刚刚创建的属性表，并选择 <strong>"属性"</strong> 打开属性页</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/new-property-sheet-4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/new-property-sheet-4.png" /></a></p>
+<hr />
+<p><strong>设置包含目录（<code>.h</code>）</strong></p>
+<p>在项目属性页 <strong>"配置属性 &gt; VC++ 目录"</strong> 中的<strong><code>包含目录</code></strong>右侧选择编辑</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/include-directories-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/include-directories-1.png" /></a></p>
+<hr />
+<p>点击 <strong>"新行"</strong> 图标，新建目录属性并将值设为 GLEW 和 freeglut 的 <strong><code>include</code></strong> 目录</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/include-directories-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/include-directories-2.png" /></a></p>
+<hr />
+<p>设置完成后，如图所示</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/include-directories-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/include-directories-3.png" /></a></p>
+<hr />
+<p><strong>设置库目录（<code>.lib</code>）</strong></p>
+<p>在项目属性页 <strong>"配置属性 &gt; VC++ 目录"</strong> 中的<strong><code>库目录</code></strong>右侧选择编辑</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/library-directories-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/library-directories-1.png" /></a></p>
+<hr />
+<p>点击 <strong>"新行"</strong> 图标，新建目录属性并将值设为 GLEW 和 freeglut 的 <strong><code>lib</code></strong> 目录（区分 32/64 位程序）</p>
+<div class="admonition info">
+<p class="admonition-title">64 位与 32 位的 lib 目录</p>
+<p>对于 <strong>64 位程序（x64）</strong>，<strong><code>lib</code></strong> 目录设置为：</p>
+<ul>
+<li><code>...\glew\lib\Release\x64</code></li>
+<li><code>...\freeglut\lib\x64</code></li>
+</ul>
+<p>对于 <strong>32 位程序（Win32）</strong>，<strong><code>lib</code></strong> 目录设置为：</p>
+<ul>
+<li><code>...\glew\lib\Release\Win32</code></li>
+<li><code>...\freeglut\lib</code></li>
+</ul>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/library-directories-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/library-directories-2.png" /></a></p>
+<hr />
+<p>设置完成后，如图所示</p>
+<figure>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/library-directories-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/library-directories-3.png" /></a></p>
+<figcaption>
+<p>图中，以 64 位程序为例</p>
+</figcaption>
+</figure>
+<hr />
+<p><strong>设置附加依赖项 [可选]</strong></p>
+<div class="admonition tip">
+<p class="admonition-title">此步骤可跳过</p>
+<p>这一步骤并不是必要的，编译器会自动查找所需依赖项，可以跳过此设置</p>
+</div>
+<p>在项目属性页 <strong>"配置属性 &gt; 链接器 &gt; 输入"</strong> 中的<strong><code>附加依赖项</code></strong>右侧选择编辑</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-dependencies-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-dependencies-1.png" /></a></p>
+<hr />
+<p>在其中写入 GLEW 和 freeglut 的动态库文件名称：<strong><code>glew32.lib</code></strong>、<strong><code>freeglut.lib</code></strong>，如图所示</p>
+<div class="admonition danger">
+<p class="admonition-title">注意拼写</p>
+<p>如果动态库文件名称拼写有误（如将 <code>freeglut</code> 错写为 <code>freelut</code> ），编译器将报错无法找到 <code>.lib</code> 文件</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/additional-dependencies-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/additional-dependencies-2.png" /></a></p>
+<hr />
+<div class="admonition danger">
+<p class="admonition-title">务必保存</p>
+<p>属性表配置完成后，务必点击 <strong>"保存"</strong> 选项进行保存！</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/save-property-sheet.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/save-property-sheet.png" /></a></p>
+<hr />
+<p><strong>添加项目属性表 [可选]</strong></p>
+<p>打开另一个解决方案的属性管理器页面，点击 <strong>"添加属性表"</strong> 图标</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/add-property-sheet-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/add-property-sheet-1.png" /></a></p>
+<hr />
+<p>选择之前已经创建好的项目属性表，打开导入即可</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/add-property-sheet-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/add-property-sheet-2.png" /></a></p>
+<hr />
+<p>导入后，在四种配置项中都会添加该属性表</p>
+<div class="admonition danger">
+<p class="admonition-title">区分 64 位和 32 位配置</p>
+<p>四种配置项都会应用该属性表的配置，意味着如果该属性表的导入库文件（<code>.lib</code>）设置为 64 位程序专用，那么在将项目的当前配置切换至构建
+x86（32位）程序后，将无法进行编译，需要手动修改！</p>
+</div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/add-property-sheet-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/add-property-sheet-3.png" /></a></p>
+</div>
+</div>
+</div>
+<hr />
+<h3 id="设置系统环境变量dll">设置系统环境变量（<code>.dll</code>）<a class="headerlink" href="#设置系统环境变量dll" title="固定链接">#</a></h3>
+<div class="admonition abstract">
+<p class="admonition-title">系统环境变量</p>
+<p><strong>环境变量</strong>是一种存储操作系统和应用程序所需配置信息的机制，这些信息通常以键值对的形式存在。其中，<code>PATH</code> 变量定义了系统在哪些目录中寻找依赖库（<code>.dll</code>）、
+可执行文件（<code>.exe</code>）和其他资源，当试图运行一个程序而未提供完整路径时，系统能够根据 <code>PATH</code> 环境变量中列出的目录顺序查找并运行该程序。</p>
+</div>
+<p>在 Windows 搜索栏搜索 <strong>"环境变量"</strong>，并点击 <strong>"编辑系统环境变量"</strong>，打开系统环境变量配置</p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/system-environment-variables-1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/system-environment-variables-1.png" /></a></p>
+<hr />
+<p>在 <strong>"系统属性 &gt; 高级"</strong> 页面下点击 <strong>"环境变量"</strong>，并双击打开在 <strong>"环境变量 &gt; 系统变量"</strong> 下的 <strong>"Path"</strong> 变量</p>
+<div class="grid">
+<p><a class="glightbox" href="../../assets/images/opengl-guide/system-environment-variables-2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/system-environment-variables-2.png" /></a></p>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/system-environment-variables-3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/system-environment-variables-3.png" /></a></p>
+</div>
+<hr />
+<p>在右上方点击 <strong>"新建"</strong> 变量并将值设为 GLEW 和 freeglut 的 <strong><code>bin</code></strong> 目录（区分 32/64 位程序）</p>
+<div class="admonition info">
+<p class="admonition-title">64 位与 32 位的 bin 目录</p>
+<p>对于 <strong>64 位程序（x64）</strong>，<strong><code>bin</code></strong> 目录设置为：</p>
+<ul>
+<li><code>...\glew\bin\Release\x64</code></li>
+<li><code>...\freeglut\bin\x64</code></li>
+</ul>
+<p>对于 <strong>32 位程序（Win32）</strong>，<strong><code>bin</code></strong> 目录设置为：</p>
+<ul>
+<li><code>...\glew\bin\Release\Win32</code></li>
+<li><code>...\freeglut\bin</code></li>
+</ul>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">需要保存并重启 Visual Studio</p>
+<p>设置系统环境变量后，需要<strong>完全关闭并重启 Visual Studio</strong> 才能生效，重启前务必<strong>全部保存</strong>项目更改！</p>
+</div>
+<figure>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/system-environment-variables-4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/system-environment-variables-4.png" /></a></p>
+<figcaption>
+<p>图中，以 64 位程序为例</p>
+</figcaption>
+</figure>
+<hr />
+<h2 id="3-opengl-绘图示例">3. OpenGL 绘图示例<a class="headerlink" href="#3-opengl-绘图示例" title="固定链接">#</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">务必检查环境配置</p>
+<p>如果在编译或运行程序时提示报错（如代码标红线、链接错误、无法解析符号或找不到 <code>.dll</code> 文件等），
+请检查环境配置的<strong>所有目录项</strong>和<strong>系统环境变量</strong>是否已正确设置！（也可能之前设置的未能保存）</p>
+</div>
+<div class="language-c++ highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">OpenGL.cpp</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;gl/glut.h&gt;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="k">const</span><span class="w"> </span><span class="n">GLfloat</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5f</span><span class="p">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="k">const</span><span class="w"> </span><span class="n">GLfloat</span><span class="w"> </span><span class="n">Pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415926536f</span><span class="p">;</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">myDisplay</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">{</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="w">    </span><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="w">    </span><span class="n">glBegin</span><span class="p">(</span><span class="n">GL_POLYGON</span><span class="p">);</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">        </span><span class="n">glVertex2f</span><span class="p">(</span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Pi</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">R</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">Pi</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="n">glEnd</span><span class="p">();</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="n">glFlush</span><span class="p">();</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="p">}</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="p">{</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="w">    </span><span class="n">glutInit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="n">argv</span><span class="p">);</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="w">    </span><span class="n">glutInitDisplayMode</span><span class="p">(</span><span class="n">GLUT_RGB</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">GLUT_SINGLE</span><span class="p">);</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="w">    </span><span class="n">glutInitWindowPosition</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">);</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="w">    </span><span class="n">glutInitWindowSize</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="w"> </span><span class="mi">400</span><span class="p">);</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="w">    </span><span class="n">glutCreateWindow</span><span class="p">(</span><span class="s">&quot;第一个 OpenGL 程序&quot;</span><span class="p">);</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="n">glutDisplayFunc</span><span class="p">(</span><span class="o">&amp;</span><span class="n">myDisplay</span><span class="p">);</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="n">glutMainLoop</span><span class="p">();</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p><a class="glightbox" href="../../assets/images/opengl-guide/opengl-demo.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../assets/images/opengl-guide/opengl-demo.png" /></a></p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p><a href="https://www.opengl.org">OpenGL - The Industry Standard for High Performance Graphics</a>&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/Obelusod" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+      <div class="md-progress" data-md-component="progress" role="progressbar"></div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.progress", "navigation.tracking", "navigation.top", "navigation.tabs", "navigation.sections", "navigation.indexes", "toc.follow", "search.suggest", "search.highlight", "header.autohide", "content.code.copy", "content.code.annotate", "content.tooltips"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
